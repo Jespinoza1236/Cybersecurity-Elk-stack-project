@@ -39,10 +39,10 @@ The configuration details of each machine may be found below.
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | Jump Box | gateway  |20.213.93.144   | Linux        |
-| Web-1    |  DVWA    |            | Linux            |
-| Web-2    |  DVWA    |            | Linux            |
-| Web-3    |  DVWA    |            | Linux            |
-| ELK-Red  |  Elk     |            | Linux            |
+| Web-1    |  DVWA    |  10.0.0.8          | Linux            |
+| Web-2    |  DVWA    |  10.0.0.9        | Linux            |
+| Web-3    |  DVWA    |  10.0.0.11        | Linux            |
+| ELK-Red  |  Elk     |  10.2.0.5/20.210.223.54  | Linux            |
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
@@ -75,7 +75,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-                   (Images/elk_docker2022.png)
+                                     (Images/elk_docker2022.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -104,27 +104,36 @@ SSH into the control node and follow the steps below:
 ### Commands to install elk
 SSH into your Jumpbox:
 - ssh "username"@"yourjumpboxIP"
+
 list docker containers:
 - sudo docker container lists -a 
+
 start docker and attach docker container with one command:
 - sudo docker start "container name" && sudo docker attach "container name"
+
 Add the vms you dont intend to install elk on into ansible hosts file:
 - nano /etc/ansible/hosts
 - uncomment webservers
 - input the internal IP addresses of your vms under webservers
+
 Create a new hosts called "elk" under webservers:
 - place the IP of the intended elk machine under elk
+
 Copy and paste the install-elk.yml:
 - copy the install-elk.yml file
 - nano /etc/anisble/install-elk.yml
 - paste the contents of the install-elk.yml file.
 - use ctrl x to save the file and enter to confirm the name.
+
 Run the playbook:
 - ansible-playbook /etc/ansible/install-elk.yml
+
 SSh into your elk machine:
 - ssh "username"@"your elk machine IP"
+
 Make sure the container is running:
 - sudo docker container ps or docker start elk
+
 Open Kibana:
 - in your browser, input http://"elk container public IP":5601/app/kibana
                               (Images/kibana_2022.png
