@@ -136,5 +136,7 @@ Make sure the container is running:
 
 Open Kibana:
 - in your browser, input http://"elk container public IP":5601/app/kibana
-                                 (Images/kibana_2022.png)
+                                 
+                                (Images/kibana_2022.png)
+                              
 
